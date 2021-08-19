@@ -1,0 +1,44 @@
+@model List<Message>
+
+@{
+    Message emptyMessage = new Message();
+}
+
+<partial name="_NewMessage" model="emptyMessage"></partial>
+
+@foreach(Message m in Model)
+{
+    bool mCreator = (m.UserID == Context.Session.GetInt32("UserID")); 
+    <div class="card rounded mx-auto w-100 mb-3 border-none">
+        <p>@m.Creator.FullName()- @m.CreatedAt.ToLongDateString()</p>
+        <p>@m.AMessage</p>
+        @if(mCreator)
+        {
+            <form asp-controller="Wall" asp-action="DeleteMessage" asp-route-messageID="@m.MessageID">
+                <button class="btn-sml border border-dark bg-red">Delete</button>
+            </form>
+        }
+    </div>
+    <div class="w-75">
+        @foreach(Comment c in m.UserMesComments.OrderBy(o => o.CreatedAt))
+        {
+            bool creator = (c.UserID == Context.Session.GetInt32("UserID"));
+            <p>@c.User.FullName()- @c.CreatedAt.ToLongDateString()</p>
+            <p>@c.AComment</p>
+            @if(creator)
+            {
+                <form asp-controller="Wall" asp-action="DeleteComment" asp-route-commentID="@c.CommentID">
+                    <button class="btn-sml border border-dark bg-red">Delete</button>
+                </form>
+            }
+        }
+    </div>
+
+    <form asp-action="NewComment" asp-controller="Wall" asp-route-messageID="@m.MessageID" method="POST" class="w-75">
+        @{
+            Comment emptyComment = new Comment();
+        }
+        <partial name="_NewComment" model="emptyComment"></partial>
+    </form>
+
+}

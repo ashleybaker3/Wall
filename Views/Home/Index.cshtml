@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model User
+
+<div class="container">
+    <div class="row">
+        <div class="col-7">
+            <div class="row">
+                <h1 class="col">Register</h1>
+            </div>
+            <form asp-controller="Home" asp-action="Register" method="POST" class="row mt-5">
+                <div class="col-4 me-4">
+                    <div class="row mb-4">
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                        <label asp-for="FirstName" class="row form-label fs-5">First Name</label>
+                        <div class="row">
+                            <input asp-for="FirstName" class="form-control ">  
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                        <label asp-for="LastName" class="row form-label fs-5">Last Name</label>
+                        <div class="row">
+                            <input asp-for="LastName" class="form-control ">  
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <label asp-for="Email" class="row form-label fs-5"></label>
+                        <div class="row">
+                            <input asp-for="Email" class="form-control ">  
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <button class="btn border border-dark col-auto">Sign up Now</button>
+                    </div>
+                </div>
+                <div class="col-4 me-4">
+                    <div class="row mb-4">
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <label asp-for="Password" class="row form-label fs-5"></label>
+                        <div class="row">
+                            <input asp-for="Password" class="form-control ">  
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <span asp-validation-for="Confirm" class="text-danger"></span>
+                        <label asp-for="Confirm" class="row form-label fs-5"></label>
+                        <div class="row">
+                            <input asp-for="Confirm" class="form-control ">  
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-auto">
+            <partial name="_Login"></partial>
+        </div>
+    </div>
+</div>

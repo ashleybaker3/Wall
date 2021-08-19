@@ -1,0 +1,18 @@
+@model Message
+
+<div class="container mb-4">
+    <form asp-action="NewMessage" asp-controller="Wall" method="POST">
+        <div class="row">
+            <span asp-validation-for="AMessage" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <label asp-for="AMessage" class="row form-label fs-5"></label>
+        </div>
+        <div class="row mb-4">
+            <textarea asp-for="AMessage" class="form-control "></textarea>  
+        </div>
+        <div class="row justify-content-end">
+            <button class="btn border border-dark col-auto bg-primary text-white">Post a message</button>
+        </div>
+    </form>
+</div>
